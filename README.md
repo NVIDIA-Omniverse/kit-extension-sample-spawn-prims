@@ -1,6 +1,12 @@
 # Spawn Primitives
 
 Create an extension in less than 10 minutes using Kit's commands!
+<br>
+
+ 
+![previewImage2](exts/omni.example.spawnPrims/tutorial/images/spawnprim_tutorial7.gif)
+
+
 
 [Reference Video](https://www.youtube.com/watch?v=eGxV_PGNpOg) used as a base for this project.
 
