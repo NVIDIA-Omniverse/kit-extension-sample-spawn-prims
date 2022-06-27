@@ -1,52 +1,21 @@
-# Extension Project Template
+# Spawn Primitives
 
-This project was automatically generated.
+Create an extension in less than 10 minutes using Kit's commands!
 
-- `app` - It is a folder link to the location of your *Omniverse Kit* based app.
-- `exts` - It is a folder where you can add new extensions. It was automatically added to extension search path. (Extension Manager -> Gear Icon -> Extension Search Path).
+[Reference Video](https://www.youtube.com/watch?v=eGxV_PGNpOg) used as a base for this project.
 
-Open this folder using Visual Studio Code. It will suggest you to install few extensions that will make python experience better.
+To follow the tutorial on how to create this extension from start to finish head over here: 
 
-Look for "omni.example.spawnPrims" extension in extension manager and enable it. Try applying changes to any python files, it will hot-reload and you can observe results immediately.
+<table>
+<tr>
+ <td><a href="https://github.com/NVIDIA-Omniverse/sample-kit-extension-spawnPrims/blob/main/exts/omni.example.spawnPrims/tutorial/Spawn_PrimsTutorial.md"> Tutorial </a> </td>
+</tr>
+</table>
 
-Alternatively, you can launch your app from console with this folder added to search path and your extension enabled, e.g.:
+## Adding This Extension
 
-```
-> app\omni.code.bat --ext-folder exts --enable omni.hello.world
-```
+To add a this extension to your Omniverse app:
+1. Go into: Extension Manager -> Gear Icon -> Extension Search Path
+2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/sample-kit-extension-spawnPrims.git?branch=main&dir=exts`
 
-# App Link Setup
-
-If `app` folder link doesn't exist or broken it can be created again. For better developer experience it is recommended to create a folder link named `app` to the *Omniverse Kit* app installed from *Omniverse Launcher*. Convenience script to use is included.
-
-Run:
-
-```
-> link_app.bat
-```
-
-If successful you should see `app` folder link in the root of this repo.
-
-If multiple Omniverse apps is installed script will select recommended one. Or you can explicitly pass an app:
-
-```
-> link_app.bat --app create
-```
-
-You can also just pass a path to create link to:
-
-```
-> link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2021.3.4"
-```
-
-
-# Sharing Your Extensions
-
-This folder is ready to be pushed to any git repository. Once pushed direct link to a git repository can be added to *Omniverse Kit* extension search paths.
-
-Link might look like this: `git://github.com/[user]/[your_repo].git?branch=main&dir=exts`
-
-Notice `exts` is repo subfolder with extensions. More information can be found in "Git URL as Extension Search Paths" section of developers manual.
-
-To add a link to your *Omniverse Kit* based app go into: Extension Manager -> Gear Icon -> Extension Search Path
 
