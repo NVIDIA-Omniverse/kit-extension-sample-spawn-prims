@@ -25,3 +25,5 @@ To add a this extension to your Omniverse app:
 2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawn-rims.git?branch=main&dir=exts`
 
 
+## Contributing
+The source code for this repository is provided as-is and we are not accepting outside contributions.
