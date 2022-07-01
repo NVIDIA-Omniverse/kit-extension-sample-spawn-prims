@@ -22,6 +22,6 @@ To follow the tutorial on how to create this extension from start to finish head
 
 To add a this extension to your Omniverse app:
 1. Go into: Extension Manager -> Gear Icon -> Extension Search Path
-2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawnPrims.git?branch=main&dir=exts`
+2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawn-rims.git?branch=main&dir=exts`
 
 
