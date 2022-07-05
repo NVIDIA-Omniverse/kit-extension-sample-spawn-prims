@@ -10,7 +10,7 @@ In this document we will be going over how to create an extension inside of Omni
 - Docking your extension window
 
 # Prereqs.
-- Add Eric's guide once its done
+- [Setup Environment](https://github.com/NVIDIA-Omniverse/ExtensionEnvironmentTutorial/blob/master/Tutorial.md#4-create-a-git-repository)
 - Omniverse Code 2022.1.1 or higher
 
 
