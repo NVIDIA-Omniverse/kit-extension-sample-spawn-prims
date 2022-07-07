@@ -1,3 +1,5 @@
+![](images/logo.png)
+
 # How to make an extension by spawning primitives
 
 In this document we will be going over how to create an extension inside of Omniverse. Extensions are what Omniverse is made up of. This is ideal for those who are begineers to Omniverse Kit.
