@@ -6,8 +6,8 @@ In this document we will be going over how to create an extension inside of Omni
 - How to create an extension
 - How to use Omni commands in code
 - How to make a functional button
-- Update your extension's title and description
-- Docking your extension window
+- Update the extension's title and description
+- Docking the extension window
 
 # Prereqs.
 - [Setup Environment](https://github.com/NVIDIA-Omniverse/ExtensionEnvironmentTutorial/blob/master/Tutorial.md#4-create-a-git-repository)
@@ -33,7 +33,7 @@ In this document we will be going over how to create an extension inside of Omni
 
 ## Step 1: Creating an Extension
 
-Omniverse is made up of all kinds of extensions that were created by developers. In this section we will show you how to create an extension and show how the code gets reflected back into Omniverse.
+Omniverse is made up of all kinds of extensions that were created by developers. In this section we will show how to create an extension and show how the code gets reflected back into Omniverse.
 
 <br>
 
@@ -42,7 +42,7 @@ Omniverse is made up of all kinds of extensions that were created by developers.
 
 ```Step 1.1.1:``` Once Omniverse Code is open select the `Extensions` Manager in the top right.
 
-You can also view other extensions through this tab. If you do not see ```Extensions``` make sure it is checked in the Windows tab.
+We can also view other extensions through this tab. If ```Extensions``` tab is not visible make sure it is checked in the Windows tab.
 <br>
 
 ![spawnprim_tutorial1.png](images/spawnprim_tutorial1.png)
@@ -50,15 +50,15 @@ You can also view other extensions through this tab. If you do not see ```Extens
 ### Step 1.2: Create template extension
 
 
-```Step 1.2.1:``` At the top left find the plus ➕ icon. Click this icon and select ```New Extension Template Project``` to begin creating your extension.
+```Step 1.2.1:``` At the top left find the plus ➕ icon. Click this icon and select ```New Extension Template Project``` to begin creating an extension.
 
 | ![spawnprim_tut_png2](images/spawnprim_tutorial2.png) | ![spawnprim_tut_png3](images/spawnprim_tutorial3.png) |
 |------ |------ |
 
 
-From here another window will popup prompting you on where to place the folder. For this example we will create it in the default location. 
+From here another window will popup prompting on where to place the folder. For this example we will create it in the default location. 
 
-```Step 1.2.2:``` Once you have the location you want to save it hit `Create`
+```Step 1.2.2:``` Once the save location is selected, hit `Create`
 
 ![spawnprim_tut_png4](images/spawnprim_tutorial4.png)
 
@@ -68,7 +68,7 @@ Then it will prompt for a Project Folder Name and Extension Name.
 
 For this example we chose `kit-exts-spawnPrims` for the Project Folder Name and `omni.spawn.primitive` for our Extension Name.
 
-> 📝 **Note:** You may want to choose the name of your extension differently for publishing. We suggest ```companyName.extdescrip1.descrip2``` 
+> 📝 **Note:** Choose the name of an extension differently for publishing. We suggest ```companyName.extdescrip1.descrip2``` 
 
 | ![spawnprim_tut_png5](images/spawnprim_tutorial5.png) | ![spawnprim_tut_png6](images/spawnprim_tutorial6.png) |
 | --- | --- |
@@ -89,11 +89,11 @@ After choosing the Extension Name two things will happen.
 | ![spawnprim_tut_png7](images/spawnprim_tutorial7.png) | ![spawnprim_tut_png8](images/spawnprim_tutorial8.png) |
 | ------ | ------ |
 
-Now that you created a new extension template, you will notice a ```Click Me``` button. When clicked, you will find a message in the Console Window in Omniverse Code recording that the button was clicked. We will use this button later to spawn a primitive.
+Now that we created a new extension template, there will be a ```Click Me``` button. When clicked, a message in the Console Window in Omniverse Code recording that the button was clicked. We will use this button later to spawn a primitive.
 
-Below you can see the button in action.
+Below is a visual to see the button in action.
 
-> 💡 **Tip:** If you are unsure where to locate the console, look to the bottom of Omniverse Code. There are tables listed *Content, NVIDIA Assets, Script Editor, etc*. Console should be listed there. If not try going to the top bar then select *Window>Utilities>Console*. Make sure there is a check mark next to Console and if not then select it for the window to show up.
+> 💡 **Tip:** If unsure where to locate the console, look to the bottom of Omniverse Code. There are tables listed *Content, NVIDIA Assets, Script Editor, etc*. Console should be listed there. If not try going to the top bar then select *Window>Utilities>Console*. Make sure there is a check mark next to Console and if not then select it for the window to show up.
 
 
 
@@ -101,7 +101,7 @@ Below you can see the button in action.
 
 ### Step 1.3: Updating the .toml File
 
-With our extension created we can also update how our extension will be viewed in the Extensions Tab. This is all done inside of the .toml file that comes with the template extension. You can locate it inside of Visual Studio Code under the `config` folder. The file is called `extension.toml`.
+With our extension created we can also update how our extension will be viewed in the Extensions Tab. This is all done inside of the .toml file that comes with the template extension. Locate it inside of Visual Studio Code under the `config` folder. The file is called `extension.toml`.
 
 ```Step 1.3.1:``` Double click `extension.toml` to open it.
 
@@ -153,17 +153,17 @@ description="Spawns different primitives utilizing omni kit's commands"
 
 ```Step 1.3.3:``` Save the file and head back over into Omniverse. 
 
-```Step 1.3.4:``` Select the Extension Tab and search for the title of your Extension
+```Step 1.3.4:``` Select the Extension Tab and search for the title of the Extension
 
-```Step 1.3.5:``` Once you found it select it to pull up it's information. 
+```Step 1.3.5:``` Once found, select it to pull up it's information. 
 
-You will see that the title and description are present in the extension info. 
+Here we can see that the title and description are present in the extension info. 
 
 ![spawnprim_tut_png10](images/spawnprim_tutorial10.png)
 
 ## Step 2: Changing the Code
 
-Now that you have a template to work with we can actually start changing some parts in the code and see it reflected in our extension. Let's take a look at the code.
+Now that template is created, we can actually start changing some parts in the code and see it reflected in our extension. Let's take a look at the code.
 
 ``` python
 import omni.ext
@@ -222,7 +222,7 @@ To understand how this template works we will start with changing some values ar
                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 ```
 
-After making those changes your code should look as follows:
+After making those changes the code should look as follows:
 
 ``` python
 import omni.ext
@@ -250,11 +250,11 @@ class MyExtension(omni.ext.IExt):
         print("[omni.spawn.primitives] MyExtension shutdown")
 ```
 
-```Step 2.1.4:``` Save your file before going back into Omniverse. 
+```Step 2.1.4:``` Save the file before going back into Omniverse. 
 
-```Step 2.1.5:``` Go to Omniverse and look at your new window. 
+```Step 2.1.5:``` Go to Omniverse and look at the new window. 
 
-You will now be able to see our new window with a giant button saying "Spawn Cube".
+Now we will be able to see our new window with a giant button saying "Spawn Cube".
 
 
 ![spawnprim_tut_png11](images/spawnprim_tutorial11.png)
@@ -271,7 +271,7 @@ Our button right now is a bit misleading. Just because it says "Spawn Cube", doe
 
 ### Step 3.1 Omniverse Commands Intro
 
-Commands are actions that take place inside of Omniverse. A simple command could be creating an object or changing a color. Commands are composed of a `do` and an `undo` feature. To read more about what commands are and how you can create your own you can go [here](https://docs.omniverse.nvidia.com/py/kit/source/extensions/omni.kit.commands/docs/index.html).
+Commands are actions that take place inside of Omniverse. A simple command could be creating an object or changing a color. Commands are composed of a `do` and an `undo` feature. To read more about what commands are and how to create custom commands go [here](https://docs.omniverse.nvidia.com/py/kit/source/extensions/omni.kit.commands/docs/index.html).
 
 Omniverse allows users / developers to see what commands are taking place as they work in the application. On the right side, there will be a window called `Commands` and this is where we can visually see what commands are taking place as we work. 
 
@@ -291,12 +291,12 @@ Now that we have the necessary tools, let's see how we can grab one of these com
 
 ```Step 3.2.1:``` Select `Create > Mesh > Cube` from the top bar. 
 
-After selecting `Cube` you should see in the Commands window a new line, `CreateMeshPrimWithDefaultXform`, that were not there before and a white cube inside of the viewport.
+After selecting `Cube` we should see in the Commands window a new line, `CreateMeshPrimWithDefaultXform`, that were not there before and a white cube inside of the viewport.
 
 
 ![spawnprim_tut_gif3](images/spawnprim_tutorial3.gif)
 
-> 💡 **Tip:** Try to do other actions and see what ends up populating inside of the Commands Window. It can tell you what commands or functions are being used for that particular action.
+> 💡 **Tip:** Try to do other actions and see what ends up populating inside of the Commands Window. It can tell what commands or functions are being used for that particular action.
 
 ```Step 3.2.2:``` In order to utilize the command for our Extension we are going to select `CreateMeshPrimWithDefaultXform` inside of the Command Window. 
 
@@ -312,7 +312,7 @@ Once we have selected it there is an option to generate script code and copy it 
 
 ```Step 3.3.1:``` With the command copied to our clipboard, paste it into the bottom of our `extension.py` file. 
 
-You should have the following after pasting:
+The code should have the following after pasting:
 
 ``` python
 import omni.ext
@@ -370,7 +370,7 @@ import omni.kit.commands
                     print("clicked!")
 ```
 
-Before saving make sure your code looks something like this:
+Before saving make sure the code looks something like this:
 
 ``` python
 import omni.ext
@@ -400,18 +400,17 @@ class MyExtension(omni.ext.IExt):
     def on_shutdown(self):
         print("[omni.spawn.primitives] MyExtension shutdown")
 ```
-```Step 3.3.4:``` Save your Code then head back into Omniverse.
+```Step 3.3.4:``` Save the code then head back into Omniverse.
 
-```Step 3.3.5:``` Test your extension by hitting the `Spawn Cube` button.
+```Step 3.3.5:``` Test the extension by hitting the `Spawn Cube` button.
 
- Now that we have gave a bit more functionality to our `on_click` function, lets give it a test. Press the `Spawn Cube` button on our Extension Window. After pressing it you should see the same functionality for creating a cube so now every time we press `Spawn Cube` it will do the same function as `Create > Mesh > Cube`.
+ Now that we have gave a bit more functionality to our `on_click` function, lets give it a test. Press the `Spawn Cube` button on our Extension Window. After pressing it we] should see the same functionality for creating a cube so now every time we press `Spawn Cube` it will do the same function as `Create > Mesh > Cube`.
  
 ![spawnprim_tut_gif4](images/spawnprim_tutorial4.gif)
 
-Now that you know how to spawn a cube the challenge is can you spawn a cone? If you are comfortable with spawning a cone or even spawning all different kinds of Meshs write the rest of the code and check in the conclusion section on how we implemented it. 
+Now that we know how to spawn a cube, the challenge is can we spawn a cone? Write the rest of the code to spawn a cone or even spawning all different kinds of Meshs and check in the conclusion section on how we implemented it. 
 
-
-If you need more guidance on how to spawn another mesh keep following along.
+If more guidance is needed on how to spawn another mesh keep following along.
 
 ## Step 4: Spawn a Cone
 
@@ -444,7 +443,7 @@ With that saved let's go back into Omniverse and see what the outcome is.
 
 <br>
 
-You can see that since both buttons use the same function they both are spawning a cube. Which is *not* the intended funtionality.
+Since both buttons use the same function they both are spawning a cube. Which is *not* the intended funtionality.
 
 ![spawnprim_tut_gif5](images/spawnprim_tutorial5.gif)
 
@@ -456,11 +455,11 @@ Just like how we go the command for creating a Cube, let's get the command for c
 
 ```Step 4.1.5:``` Paste the code into `extensions.py` inside of Visual Studio Code.
 
-Once you have copied and pasted that into Visual Studio Code, we shall compare the different between the two.
+Once the command has been copied and pasted that into Visual Studio Code, we shall compare the different between the two.
 
 ![spawnprim_tut_gif6](images/spawnprim_tutorial6.gif)
 
-Looking at both commands, can you spot the similarities between the two? 
+Looking at both commands, is there similarities between the two? 
 
 ``` python
                 def on_click():
@@ -513,7 +512,7 @@ omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
     prim_type=prim_type)
 ```
 
-Your code should look like the following after the changes:
+The code should look like the following after the changes:
 
 ``` python
 
@@ -543,12 +542,12 @@ Now if we head back to where we created the buttons, let's make sure to pass the
 
 ## Step 5: Conclusion
 
-You were able to create your first extension utilizing the template. Where to go from here?
+We were able to create an extension utilizing the template. Where to go from here?
 
-We only covered the two Meshs that you can create but can you code the other Meshs as well? It would look something like this:
+We only covered the two Meshs that can be created but is it possible to code the other Meshs as well? It would look something like this:
 ![spawnprim_tut_png15](images/spawnprim_tutorial15.png)
 
-If you would like to see the full code for it see below.
+To see the full code for it see below.
 
 ---
 
