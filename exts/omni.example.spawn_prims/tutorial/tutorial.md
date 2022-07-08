@@ -139,7 +139,7 @@ keywords = ["kit", "example"]
 
 # Main python module this extension provides, it will be publicly available as "import omni.hello.world".
 [[python.module]]
-name = "omni.spawn.primitives"
+name = "omni.example.spawn_prims"
 ```
 
 For now we will update the title and description variable. 
@@ -178,7 +178,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("My Window", width=300, height=300)
         with self._window.frame:
@@ -191,7 +191,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Click Me", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
 ```
 
 ### Step 2.1: Update the text
@@ -237,7 +237,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -249,7 +249,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
 ```
 
 ```Step 2.1.4:``` Save the file before going back into Omniverse. 
@@ -327,7 +327,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -339,7 +339,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
 
 import omni.kit.commands
 
@@ -386,7 +386,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -400,7 +400,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
 ```
 ```Step 3.3.4:``` Save the code then head back into Omniverse.
 
@@ -424,7 +424,7 @@ We know how to spawn a cube but there are still some other Meshs we can spawn, f
 
 ``` python
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -569,7 +569,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -590,7 +590,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Torus", clicked_fn=lambda: on_click("Torus"))
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
 
 ```
     

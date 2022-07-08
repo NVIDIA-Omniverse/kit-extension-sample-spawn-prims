@@ -9,7 +9,7 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -30,4 +30,4 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Torus", clicked_fn=lambda: on_click("Torus"))
 
     def on_shutdown(self):
-        print("[omni.spawn.primitives] MyExtension shutdown")
+        print("[omni.example.spawn_prims] MyExtension shutdown")
