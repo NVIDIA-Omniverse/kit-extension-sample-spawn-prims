@@ -1,4 +1,4 @@
-# Spawn Primitives (omni.example.spawnPrims) 
+# Spawn Primitives (omni.example.spawn_prims) 
 ![Camera Reticle Preview](../tutorial/images/spawnprim_tutorial7.gif)
 
 ## Overview

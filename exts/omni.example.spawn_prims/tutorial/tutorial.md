@@ -68,7 +68,7 @@ Then it will prompt for a Project Folder Name and Extension Name.
 
 ```Step 1.2.3:``` Enter a Project Folder Name and Extension Name.
 
-For this example we chose `kit-exts-spawnPrims` for the Project Folder Name and `omni.spawn.primitive` for our Extension Name.
+For this example we chose `kit-extension-sample-spawn_prims` for the Project Folder Name and `omni.example.spawn_prims` for our Extension Name.
 
 > 📝 **Note:** Choose the name of an extension differently for publishing. We suggest ```companyName.extdescrip1.descrip2``` 
 
