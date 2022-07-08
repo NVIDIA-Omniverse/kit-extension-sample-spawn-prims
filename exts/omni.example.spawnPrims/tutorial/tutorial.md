@@ -130,7 +130,7 @@ Select the Extension Tab and search for the title of the Extension.
 
 Once found, select it to pull up its details. 
 
-Here we can see that the title and description are present in the extension details. 
+Here you can see that the title and description are present in the extension details. 
 
 ![spawnprim_tut_png10](images/spawnprim_tutorial10.png)
 
@@ -251,7 +251,7 @@ Currently, the button text is a bit misleading. It says "Spawn Cube", however, i
 
 Commands are actions that take place inside of Omniverse. A simple command could be creating an object or changing a color. Commands are composed of a `do` and an `undo` feature. To read more about what commands are and how to create custom commands go [here](https://docs.omniverse.nvidia.com/py/kit/source/extensions/omni.kit.commands/docs/index.html).
 
-Omniverse allows users and developers to see what commands are taking place as they work in the application. On the right side, there will be a window called `Commands` and this is where we can visually see what commands are taking place as we work. 
+Omniverse allows users and developers to see what commands are taking place as they work in the application. On the right side, there will be a window called `Commands` and this is where you can visually see what commands are taking place as you work. 
 
 ### Step 5.1: 
 
@@ -267,13 +267,13 @@ Select the `Clear History` button located in the Commands Window.  This will mak
 
 ### Step 5.2 Getting the Command Code
 
-Now that we have the necessary tools, let's see how we can grab one of these commands and use it in our extension. The first thing we are going to do is create a cube. There are different ways on how to create our cube but for this example we will go to the top bar.
+Now that you have the necessary tools, let's see how you can grab one of these commands and use it in the extension. The first thing you are going to do is create a cube. There are different ways on how to create the cube but for this example you will go to the top bar.
 
 ### Step 5.3: Create a Cube
 
 Select `Create > Mesh > Cube` from the top bar. 
 
-After selecting `Cube` we should see a `Cube` was created in the `Viewport` and a new line added to the `Commands Window`. 
+After selecting `Cube` you should see a `Cube` was created in the `Viewport` and a new line added to the `Commands Window`. 
 
 ![spawnprim_tut_gif3](images/spawnprim_tutorial3.gif)
 
@@ -395,18 +395,19 @@ Save your code and switch focus back to Omniverse.
 
 Test the extension by hitting the `Spawn Cube` button.
 
-Now that we have gave a bit more functionality to our `on_click` function, lets give it a test. Press the `Spawn Cube` button on our Extension Window. After pressing it we should see the same functionality for creating a cube so now every time we press `Spawn Cube` it will do the same function as `Create > Mesh > Cube`.
+Now that you have more functionality in the `on_click` function, you should again test. Press the `Spawn Cube` button in the Extension Window. 
+
+You should see that a new Cube Prim is created with each button press.
  
 ![spawnprim_tut_gif4](images/spawnprim_tutorial4.gif)
 
-Now that you know how to spawn a cube, the challenge is can we spawn a cone? Write the rest of the code to spawn a cone or even spawning all different kinds of Meshs and check in the conclusion section on how we implemented it. 
+Excellent, you now know how to spawn a cube using a function.  Whats more, you didnt have to reference anything as Omniverse Code was kind enough to deliver everything you needed.
 
-If more guidance is needed on how to spawn another mesh keep following along.
+Continuing on and via same methods you will now construct a second button spawning a cone in the same interface.
 
 ## Step 6: Spawn a Cone
 
-We know how to spawn a cube but there are still some other Meshs we can spawn, for example a cone. Well how can we spawn a cone? Let's first start by creating another button. This time we will call it `Spawn Cone`.
-
+Similar to before, you will need to spawn another mesh.  
 ### Step 6.1: Add a Button
 
 Add the line `ui.Button("Spawn Cone", clicked_fn=lambda: on_click())` below the spawn cube button.
@@ -432,13 +433,13 @@ Add the line `ui.Button("Spawn Cone", clicked_fn=lambda: on_click())` below the 
 
 Save the file then switch focus to Omniverse.
 
-Notice that both buttons use the same function and both are Spawn a `Cube`.
+Notice that both buttons use the same function therefore both currently spawn a `Cube` despite their labels.
 
 ![spawnprim_tut_gif5](images/spawnprim_tutorial5.gif)
 
-## Step 7: Create a Cone
+## Step 7: Create a Cone from the Menu
 
-Just like how we got the command for creating a Cube, let's get the command for creating a cone. 
+Using the interface in Omniverse Code, create a Cone.
 
 ### Step 7.1: Create the Mesh
 
@@ -468,8 +469,10 @@ Once you have copied and pasted the command into Visual Studio Code, compare the
                     print("clicked!")
 ```
 
+Notice that the command is the same and only the value for `prim_type` is different. 
 
-It appears that the command is the same and only the value for `prim_type` is different. For cube we need to pass `'Cube'` and for cone we need to pass `'Cone'`.
+To Spawn cube you need to pass `'Cube'`
+To Spawn a cone you need to pass `'Cone'`
 
 ``` python
 #Create a Cube
@@ -483,7 +486,7 @@ omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
 
 ### Step 8: Updating on_click() 
 
-Here you will update `on_click()` to work for multiple buttons.
+Update `on_click()` to work for multiple buttons.
 
 ### Step 8.1: Change what gets passed to `on_click`
 
@@ -492,7 +495,7 @@ Add an argument to `on_click()` called `prim_type`.
 ``` python
 def on_click(prim_type):
 ```
-This value will be used as part of the command execution. We should only have one execute command function call.
+This value will be used as part of the command execution. You should only have one execute command function call.
 
 Remove the `execute()` for creating a `Cone`.
 
@@ -521,9 +524,11 @@ The code should look like the following after the changes:
 
 ## Step 8.4: Update the Buttons
 
-Now head back to where you create the buttons and pass the appropriate value for Cube and Cone.
+Locate the two `on_click()` fuction calls.
 
-Update the `clicked_fn` for both UI Buttons. The two function calls should look like `on_click("Cube")` and `on_click("Cone")`.
+Update the `clicked_fn` for both UI Buttons. 
+
+
 
 ``` python
 
@@ -540,15 +545,16 @@ Save the file and test the updates to your __Spawn Primitives__ window.
 
 ## Step 9: Conclusion
 
-You were able to create an extension utilizing the template. Congratulations! What Now?
+Ok, you have successfully created a second button that spawns a second mesh all within the same extension.  This of course can be expanded upon.  
 
-This example only covered the two mesh types. It's possible to create buttons for all the other mesh types as well. Try challenging yourself with adding all the additional mesh types found in Omniverse.
-
-It would look something like this:
+### 9.1: Bonus Points
+As a continued challenge, feel free to add a button for every mesh type on your own.  
+It is fun and makes for good practice.   
 
 ![spawnprim_tut_png15](images/spawnprim_tutorial15.png)
 
-Though you should try doing this bit on your own,  the full code for this task is below should you need some help.
+Below you can find a completed "cheat sheet" if you need help or just want to copy it for your own use.
+
 
 ---
 
