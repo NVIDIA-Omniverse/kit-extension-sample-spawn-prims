@@ -1,8 +1,8 @@
 # Spawn Primitives Extension Sample
 
-## [Spawn Primitivies (omni.example.spawnPrims)](exts/omni.example.spawnPrims)
+## [Spawn Primitivies (omni.example.spawn_prims)](exts/omni.example.spawn_prims)
 
-![previewImage2](exts/omni.example.spawnPrims/tutorial/images/spawnprim_tutorial7.gif)
+![previewImage2](exts/omni.example.spawn_prims/tutorial/images/spawnprim_tutorial7.gif)
 
 ### About
 This extension shows how to build an extension in less than 10 minutes. The focus of this sample extension is to show how to create an extension and use omni.kit commands.
@@ -10,11 +10,11 @@ This extension shows how to build an extension in less than 10 minutes. The focu
 [Reference Video](https://www.youtube.com/watch?v=eGxV_PGNpOg) used as a base for this project.
 
 
-### [README](exts/omni.example.spawnPrims/)
-See the [README for this extension](exts/omni.example.spawnPrims/) to learn more about it including how to use it.
+### [README](exts/omni.example.spawn_prims/)
+See the [README for this extension](exts/omni.example.spawn_prims/) to learn more about it including how to use it.
 
-### [Tutorial](exts/omni.example.spawnPrims/tutorial/tutorial.md)
-Follow a [step-by-step tutorial](exts/omni.example.spawnPrims/tutorial/tutorial.md) that walks you through how to use omni.ui.scene to build this extension.
+### [Tutorial](exts/omni.example.spawn_prims/tutorial/tutorial.md)
+Follow a [step-by-step tutorial](exts/omni.example.spawn_prims/tutorial/tutorial.md) that walks you through how to use omni.ui.scene to build this extension.
 
 ## Adding This Extension
 

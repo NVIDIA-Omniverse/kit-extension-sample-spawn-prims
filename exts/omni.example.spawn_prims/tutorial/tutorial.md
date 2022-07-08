@@ -416,7 +416,7 @@ Add the line `ui.Button("Spawn Cone", clicked_fn=lambda: on_click())` below the 
 
 ``` python
     def on_startup(self, ext_id):
-        print("[omni.spawn.primitives] MyExtension startup")
+        print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
