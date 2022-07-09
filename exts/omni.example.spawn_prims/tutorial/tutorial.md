@@ -215,7 +215,7 @@ Omniverse allows users and developers to see what commands are being executed as
 
 ![Commands window](images/commands_window.png)
 
-You'll use this window to understand what your code is doing.
+You'll use this window to quickly build out command-based functionality.
 
 ### Step 5.1: Move Your Commands Window
 
@@ -305,7 +305,7 @@ def on_click():
     print("clicked!")
 ```
 
-#### Step 6.6: Review and Save
+### Step 6.6: Review and Save
 
 Ensure your code matches ours:
 
@@ -382,7 +382,7 @@ Save the file, switch back to Omniverse, and test your new button:
 
 Notice that both buttons use the same function and, therefore, both spawn a `Cube`, despite their labels.
 
-## Step 8.3: Create a Cone from the Menu
+### Step 8.3: Create a Cone from the Menu
 
 Using the same *Create* menu in Omniverse Code, create a Cone (**Create > Mesh > Cone**).
 
@@ -415,7 +415,7 @@ Notice the command is the same, and only the `prim_type` is different:
 - To spawn cube you pass `'Cube'`
 - To spawn a cone you pass `'Cone'`
 
-### Step 8.6: Pass the Prim Type to `on_click()` 
+### Step 8.6: Accept a Prim Type in `on_click()` 
 
 Add a `prim_type` argument to `on_click()`:
 
@@ -425,7 +425,7 @@ def on_click(prim_type):
 
 With this value, you can delete the second `omni.kit.commands.execute()` call. Next, you'll use `prim_type` to determine what shape to create.
 
-### Step 8.7: Replace Prim Type 
+### Step 8.7: Use the Prim Type in `on_click()`
 
 Replace `prim_type='Cube'` with `prim_type=prim_type`:
 
