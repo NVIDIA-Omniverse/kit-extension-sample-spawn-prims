@@ -2,6 +2,11 @@ import omni.ext
 import omni.ui as ui
 import omni.kit.commands
 
+# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+def some_public_function(x: int):
+    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+    return x ** x
+
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
@@ -13,14 +18,15 @@ class MyExtension(omni.ext.IExt):
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
+            # VStack which will layout UI elements vertically
             with ui.VStack():
-
                 def on_click(prim_type):
+                    # omni.kit.commands.execute will execute the given command that is passed followed by the commands arguments
                     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-                        prim_type=prim_type)
-
-                    print("clicked!")
-
+                        prim_type=prim_type,
+                        above_ground=True)
+                    
+                # Button UI Elements
                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click("Cube"))
                 ui.Button("Spawn Cone", clicked_fn=lambda: on_click("Cone"))
                 ui.Button("Spawn Cylinder", clicked_fn=lambda: on_click("Cylinder"))

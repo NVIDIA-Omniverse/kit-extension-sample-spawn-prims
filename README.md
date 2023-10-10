@@ -19,8 +19,15 @@ Follow a [step-by-step tutorial](exts/omni.example.spawn_prims/tutorial/tutorial
 ## Adding This Extension
 
 To add a this extension to your Omniverse app:
-1. Go into: Extension Manager -> Gear Icon -> Extension Search Path
+1. Go into: Extension Manager -> Hamburger Icon -> Settings -> Extension Search Path
 2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawn-prims.git?branch=main&dir=exts`
+
+Alternatively:
+1. Download or Clone the extension, unzip the file if downloaded
+2. Copy the `exts` folder path within the extension folder
+    - i.e. home/.../kit-extension-sample-spawn-prims/exts (Linux) or C:/.../kit-extension-sample-spawn-prims/exts (Windows)
+3. Go into: Extension Manager -> Hamburger Icon -> Settings -> Extension Search Path
+4. Add the `exts` folder path as a search path
 
 ## Linking with an Omniverse app
 
@@ -29,21 +36,39 @@ For a better developer experience, it is recommended to create a folder link nam
 Run:
 
 ```bash
+# Windows
 > link_app.bat
 ```
 
-There is also an analogous `link_app.sh` for Linux. If successful you should see `app` folder link in the root of this repo.
+```shell
+# Linux
+~$ link_app.sh
+```
+
+If successful you should see `app` folder link in the root of this repo.
 
 If multiple Omniverse apps is installed script will select recommended one. Or you can explicitly pass an app:
 
 ```bash
+# Windows
 > link_app.bat --app code
+```
+
+```shell
+# Linux
+> link_app.sh --app code
 ```
 
 You can also just pass a path to create link to:
 
 ```bash
+# Windows
 > link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2022.1.3"
+```
+
+```shell
+# Linux
+> link_app.sh --path "home/bob/.local/share/ov/pkg/create-2022.1.3"
 ```
 
 ## Contributing
