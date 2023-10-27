@@ -60,6 +60,8 @@ After this, two things happen.
 
 First, Visual Studio Code starts up, displaying the template Extension code:
 
+> **Note:** If `extension.py` is not open, go to exts > my.spawn_prims.ext > my > spawn_prims > ext > extension.py
+
 ![Visual Studio Code](images/spawnprim_tutorial7.png)
 
 Second, a new window appears in Omniverse, called "My Window":
@@ -91,7 +93,7 @@ Change the Extension's `title` and `description`:
 
 ``` python
 title = "Spawn Primitives"
-description="Spawns different primitives utilizing omni kit's commands"
+description = "Spawns different primitives utilizing omni kit's commands"
 ```
 
 Save the file and head back over into Omniverse.
@@ -285,7 +287,7 @@ Omniverse allows users and developers to see what commands are being executed as
 
 You'll use this window to quickly build out command-based functionality.
 
-> > **Note:** If you don't see the *Commands* window, make sure it is enabled in the Extension Manager / Extension Window by searching for `omni.kit.window.commands`. Then go to **Window > Commands** :
+> > **Note:** If you don't see the *Commands* window, make sure it is enabled in the Extension Manager / Extension Window by searching for `omni.kit.window.commands`. Then go to **Window > Commands** 
 
 ### Step 5.1: Move Your Commands Window
 
@@ -325,7 +327,7 @@ Select the new line **CreateMeshPrimWithDefaultXform** in the Command Window, th
 
 ### Step 6.3: Use the Command in Your Extension
 
-Paste the copied command into the bottom of the `extension.py` file. The whole file looks like this:
+Paste the copied command into `on_click()`. The whole file looks like this:
 
 ``` python
 import omni.ext
@@ -350,7 +352,12 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
             with ui.VStack():
 
                 def on_click():
-                    pass
+                    import omni.kit.commands
+
+                    omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
+                        prim_type='Cube',
+                        above_ground=True)
+                    
 
                 with ui.HStack():
                     ui.Button("Spawn Cube", clicked_fn=on_click)
@@ -358,11 +365,6 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
 
-import omni.kit.commands
-
-omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-	prim_type='Cube',
-	above_ground=True)
 ```
 
 You added a new import and a command that creates a cube.
