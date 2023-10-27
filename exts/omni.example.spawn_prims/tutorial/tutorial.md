@@ -223,7 +223,7 @@ def on_startup(self, ext_id):
 Update the `Button` text to "Spawn Cube".
 
 ``` python
-ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+ui.Button("Spawn Cube", clicked_fn=on_click)
 ```
 
 ### Step 3.5: Review Your Changes
@@ -258,7 +258,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                     pass
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
@@ -353,7 +353,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                     pass
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
@@ -423,7 +423,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                         above_ground=True)
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
@@ -461,8 +461,8 @@ def on_startup(self, ext_id):
                     prim_type='Cube',
                     above_ground=True)
 
-            ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
-            ui.Button("Spawn Cone", clicked_fn=lambda: on_click())
+            ui.Button("Spawn Cube", clicked_fn=on_click)
+            ui.Button("Spawn Cone", clicked_fn=on_click)
 ```
 
 ### Step 8.2: Save and Review
@@ -540,8 +540,8 @@ def on_click(prim_type):
 Update the `clicked_fn` for both UI Buttons to pass the `prim_type`:
 
 ``` python
-ui.Button("Spawn Cube", clicked_fn=lambda: on_click("Cube"))
-ui.Button("Spawn Cone", clicked_fn=lambda: on_click("Cone"))
+ui.Button("Spawn Cube", clicked_fn=on_click("Cube"))
+ui.Button("Spawn Cone", clicked_fn=on_click("Cone"))
 ```
 
 ### Step 8.9: Save and Test
@@ -591,13 +591,13 @@ Great job! You've successfully created a second button that spawns a second mesh
 >                         prim_type=prim_type,
 >                         above_ground=True)
 >
->                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click("Cube"))
->                 ui.Button("Spawn Cone", clicked_fn=lambda: on_click("Cone"))
->                 ui.Button("Spawn Cylinder", clicked_fn=lambda: on_click("Cylinder"))
->                 ui.Button("Spawn Disk", clicked_fn=lambda: on_click("Disk"))
->                 ui.Button("Spawn Plane", clicked_fn=lambda: on_click("Plane"))
->                 ui.Button("Spawn Sphere", clicked_fn=lambda: on_click("Sphere"))
->                 ui.Button("Spawn Torus", clicked_fn=lambda: on_click("Torus"))
+>                 ui.Button("Spawn Cube", clicked_fn=on_click("Cube"))
+>                 ui.Button("Spawn Cone", clicked_fn=on_click("Cone"))
+>                 ui.Button("Spawn Cylinder", clicked_fn=on_click("Cylinder"))
+>                 ui.Button("Spawn Disk", clicked_fn=on_click("Disk"))
+>                 ui.Button("Spawn Plane", clicked_fn=on_click("Plane"))
+>                 ui.Button("Spawn Sphere", clicked_fn=on_click("Sphere"))
+>                 ui.Button("Spawn Torus", clicked_fn=on_click("Torus"))
 >
 >     def on_shutdown(self):
 >         print("[omni.example.spawn_prims] MyExtension shutdown")
