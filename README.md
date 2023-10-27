@@ -7,9 +7,6 @@
 ### About
 This repo shows how to build an extension in less than 10 minutes. The focus of this sample extension is to show how to create an extension and use omni.kit commands.
 
-Here is the [reference video](https://www.youtube.com/watch?v=eGxV_PGNpOg) that was used as a base for this project.
-
-
 #### [README](exts/omni.example.spawn_prims/)
 See the [README for this extension](exts/omni.example.spawn_prims/) to learn more about it including how to use it.
 
