@@ -258,7 +258,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                     pass
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=on_click)
+                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
@@ -309,6 +309,10 @@ Click **Create > Mesh > Cube** from the top bar:
 
 ![Create a cube](images/spawnprim_tutorial3.gif)
 
+If the *Create Menu* is not avaliable, go to *Stage Window* and **Right Click > Create > Mesh > Cube**
+
+![](images/step6-1.gif)
+
 In the *Viewport*, you'll see your new cube. In the *Commands Window*, you'll see a new command.
 
 > **Note:** If you cannot see the Cube try adding a light to the stage. **Create > Light > Distant Light**
@@ -349,7 +353,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                     pass
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=on_click)
+                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
@@ -419,7 +423,7 @@ class MySpawn_primsExtExtension(omni.ext.IExt):
                         above_ground=True)
 
                 with ui.HStack():
-                    ui.Button("Spawn Cube", clicked_fn=on_click)
+                    ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
 
     def on_shutdown(self):
         print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
