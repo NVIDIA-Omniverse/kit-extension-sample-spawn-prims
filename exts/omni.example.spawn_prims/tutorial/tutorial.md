@@ -7,7 +7,7 @@ In this document you learn how to create an Extension inside of Omniverse. Exten
 ## Learning Objectives
 
 - Create an Extension
-- Use Omni Commands in Omniverse Code
+- Use Omni Commands in Omniverse
 - Make a functional Button
 - Update the Extension's title and description
 - Dock the Extension Window
@@ -15,7 +15,7 @@ In this document you learn how to create an Extension inside of Omniverse. Exten
 # Prerequisites
 
 - [Set up your environment](https://github.com/NVIDIA-Omniverse/ExtensionEnvironmentTutorial/blob/master/Tutorial.md#4-create-a-git-repository)
-- Omniverse Code 2022.1.1 or higher
+- Omniverse Kit 105.1.1 or higher
 
 ## Step 1: Create an Extension
 
@@ -23,23 +23,23 @@ Omniverse is made up of all kinds of Extensions that were created by developers.
 
 ### Step 1.1: Navigate to the Extensions List
 
-In Omniverse Code, navigate to the *Extensions* panel:
+In Omniverse, navigate to the *Extensions* Window:
 
 ![Click the Extensions panel](images/extensions_panel.png)
 
-> **Note:** If you don't see the *Extensions* panel, enable **Window > Extensions**:
+> **Note:** If you don't see the *Extensions* Window, enable **Window > Extensions**:
 >
 > ![Show the Extensions panel](images/window_extensions.png)
 
 ### Step 1.2: Create A New Extension Template Project
 
 Click the **plus** icon, and select ```New Extension Template Project``` to create a extension:
-    
+
 ![New Extension Template Project](images/spawnprim_tutorial2.png)
 
 ### Step 1.3: Choose a Location for Your Extension
 
-In the following prompt, select the default location for your Extension, and click **Create**:
+In the following prompt, select the default location for your Extension, and click **Select**:
 
 ![Create Extension](images/spawnprim_tutorial4.png)
 
@@ -49,31 +49,37 @@ Next, name your project "kit-exts-spawn-prims":
 
 ![Project name](images/spawnprim_tutorial5.png)
 
-And name your Extension "omni.example.spawn_prims":
+And name your Extension "my.spawn_prims.ext":
 
 ![Extension name](images/spawnprim_tutorial6.png)
 
-> **Note:** Choose a different Extension name when publishing. For example: "companyName.extdescrip1.descrip2" 
+> **Note:** You can choose a different Extension name when publishing. For example: "companyName.extdescrip1.descrip2"
+> You **may not** use omni in your extension id.
 
 After this, two things happen.
 
 First, Visual Studio Code starts up, displaying the template Extension code:
 
+> **Note:** If `extension.py` is not open, go to exts > my.spawn_prims.ext > my > spawn_prims > ext > extension.py
+
 ![Visual Studio Code](images/spawnprim_tutorial7.png)
 
-Second, a new window appears in Omniverse Code, called "My Window":
+Second, a new window appears in Omniverse, called "My Window":
 
 ![My window](images/spawnprim_tutorial8.png)
 
-If you click **Click Me** in *My Window*, an output message appears in the *Console* in Omniverse Code, stating that the button was clicked:
+If you click **Add** in *My Window*, the `empty` text changes to `count: 1`, indicating that the button was clicked. Pressing **Add** again increases the number for count. Pressing **Reset** will reset it back to `empty`:
 
 ![Console log](images/spawnprim_tutorial1.gif)
 
 You use this button later to spawn a primitive.
 
+> **Note:** If you close out of VSCode, you can reopen the extension's code by searching for it in the Extension Window and Click the VSCode Icon. This will only work if you have VSCode installed.
+> ![vscode](images/spawnprim_tutorial16.png)
+
 ## Step 2: Update Your Extension's Metadata
 
-With the Extension created, you can update the metadata in `extension.toml`. This is metadata is used in the Extension details of the *Extensions Manager*. It's also used to inform other systems of the Application. 
+With the Extension created, you can update the metadata in `extension.toml`. This is metadata is used in the Extension details of the *Extensions Manager*. It's also used to inform other systems of the Application.
 
 ### Step 2.1: Navigate to `extension.toml`
 
@@ -87,55 +93,75 @@ Change the Extension's `title` and `description`:
 
 ``` python
 title = "Spawn Primitives"
-description="Spawns different primitives utilizing omni kit's commands"
+description = "Spawns different primitives utilizing omni kit's commands"
 ```
 
-Save the file and head back over into Omniverse. 
+Save the file and head back over into Omniverse.
 
 ### Step 2.3: Locate the Extension
 
-Select the *Extension* tab, search for your Extension, and select it to pull up its details:
+Select the *Extension* Window, search for your Extension in *Third Party* tab, and select it in the left column to pull up its details:
 
 ![Extension details](images/spawnprim_tutorial10.png)
 
-Now that your template is created, you can start editing the source code and see it reflected in Omniverse Code. 
+Now that your template is created, you can start editing the source code and see it reflected in Omniverse.
 
 ## Step 3: Update Your Extension's Interface
 
-Currently, your window is called "My window", and the button says, "Click Me". In this step, you make some changes to better reflect the purpose of your Extension.
+Currently, your window is called "My Window", and there are two buttons that says, "Add" and "Reset". In this step, you make some changes to better reflect the purpose of your Extension.
 
 ### Step 3.1: Navigate to `extension.py`
 
-Navigate to `omni/spawn/primitives/extension.py` to find the following source code:
+In Visual Studio Code, navigate to `ext/my.spawn_prims.ext/my/spawn_prims/ext/extension.py` to find the following source code:
 
 ``` python
 import omni.ext
 import omni.ui as ui
 
+
+# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+def some_public_function(x: int):
+    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+    return x ** x
+
+
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
-class MyExtension(omni.ext.IExt):
+class MySpawn_primsExtExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.example.spawn_prims] MyExtension startup")
+        print("[my.spawn_prims.ext] my spawn_prims ext startup")
+
+        self._count = 0
 
         self._window = ui.Window("My Window", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
-                ui.Label("Some Label")
+                label = ui.Label("")
+
 
                 def on_click():
-                    print("clicked!")
+                    self._count += 1
+                    label.text = f"count: {self._count}"
 
-                ui.Button("Click Me", clicked_fn=lambda: on_click())
+                def on_reset():
+                    self._count = 0
+                    label.text = "empty"
+
+                on_reset()
+
+                with ui.HStack():
+                    ui.Button("Add", clicked_fn=on_click)
+                    ui.Button("Reset", clicked_fn=on_reset)
 
     def on_shutdown(self):
-        print("[omni.example.spawn_prims] MyExtension shutdown")
+        print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
+
 ```
 
-Next, change some values to better reflect what your Extension does. 
+Next, change some values to better reflect what your Extension does.
 
 ### Step 3.2: Update the Window Title
 
@@ -145,26 +171,61 @@ Initialize `ui.Window` with the title "Spawn Primitives", instead of "My window"
 self._window = ui.Window("Spawn Primitives", width=300, height=300)
 ```
 
-### Step 3.3: Remove the Label
+### Step 3.3: Remove the Label and Reset Functionality
 
-Remove the line `ui.Label("Some Label")`
+Remove the following lines and add `pass` inside `on_click()`
 
 ``` python
-self._window = ui.Window("Spawn Primitives", width=300, height=300)
-with self._window.frame:
-    with ui.VStack():
-        
-        ui.Label("Some Label") # DELETE THIS LINE
-        
-        def on_click():
-            print("clicked!")
+def on_startup(self, ext_id):
+    print("[my.spawn_prims.ext] my spawn_prims ext startup")
+
+    self._count = 0 # DELETE THIS LINE
+
+    self._window = ui.Window("Spawn Primitives", width=300, height=300)
+    with self._window.frame:
+        with ui.VStack():
+            label = ui.Label("") # DELETE THIS LINE
+
+
+            def on_click():
+                pass # ADD THIS LINE
+                self._count += 1 # DELETE THIS LINE
+                label.text = f"count: {self._count}" # DELETE THIS LINE
+
+            def on_reset(): # DELETE THIS LINE
+                self._count = 0 # DELETE THIS LINE
+                label.text = "empty" # DELETE THIS LINE
+
+            on_reset() # DELETE THIS LINE
+
+            with ui.HStack():
+                ui.Button("Add", clicked_fn=on_click)
+                ui.Button("Reset", clicked_fn=on_reset) # DELETE THIS LINE
 ```
+
+What your code should look like after removing the lines:
+``` python
+def on_startup(self, ext_id):
+    print("[my.spawn_prims.ext] my spawn_prims ext startup")
+
+    self._window = ui.Window("Spawn Primitives", width=300, height=300)
+    with self._window.frame:
+        with ui.VStack():
+
+            def on_click():
+                pass
+
+            with ui.HStack():
+                ui.Button("Add", clicked_fn=on_click)
+```
+
+
 ### Step 3.4: Update the Button Text
 
 Update the `Button` text to "Spawn Cube".
 
 ``` python
-ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+ui.Button("Spawn Cube", clicked_fn=on_click)
 ```
 
 ### Step 3.5: Review Your Changes
@@ -175,29 +236,38 @@ After making the above changes, your code should read as follows:
 import omni.ext
 import omni.ui as ui
 
+
+# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+def some_public_function(x: int):
+    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+    return x ** x
+
+
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
-class MyExtension(omni.ext.IExt):
+class MySpawn_primsExtExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.example.spawn_prims] MyExtension startup")
+        print("[my.spawn_prims.ext] my spawn_prims ext startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
 
                 def on_click():
-                    print("clicked!")
+                    pass
 
-                ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                with ui.HStack():
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
-        print("[omni.example.spawn_prims] MyExtension shutdown")
+        print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
+
 ```
 
-Save the file, and return to Omniverse Code. There, you'll see your new window with a large button saying "Spawn Cube".
+Save the file, and return to Omniverse. There, you'll see your new window with a large button saying "Spawn Cube".
 
 ![New window](images/spawnprim_tutorial11.png)
 
@@ -209,13 +279,15 @@ Omniverse allows you to move Extensions and dock them in any location. To do so,
 
 ## Step 5: Prepare Your Commands Window
 
-Commands are actions that take place inside of Omniverse. A simple command could be creating an object or changing a color. Commands are composed of a `do` and an `undo` feature. To read more about what commands are and how to create custom commands, read our [documentation](https://docs.omniverse.nvidia.com/py/kit/source/extensions/omni.kit.commands/docs/index.html).
+Commands are actions that take place inside Omniverse. A simple command could be creating an object or changing a color. Commands are composed of a `do` and an `undo` feature. To read more about what commands are and how to create custom commands, read our [documentation](https://docs.omniverse.nvidia.com/kit/docs/omni.kit.commands/latest/Overview.html).
 
 Omniverse allows users and developers to see what commands are being executed as they work in the application. You can find this information in the *Commands* window:
 
 ![Commands window](images/commands_window.png)
 
 You'll use this window to quickly build out command-based functionality.
+
+> > **Note:** If you don't see the *Commands* window, make sure it is enabled in the Extension Manager / Extension Window by searching for `omni.kit.window.commands`. Then go to **Window > Commands** 
 
 ### Step 5.1: Move Your Commands Window
 
@@ -225,7 +297,7 @@ Move the Commands window to get a better view, or dock it somewhere convenient:
 
 ### Step 5.2: Clear Old Commands
 
-Select the **Clear History** button in the *Commands* window. This makes it easier to see what action takes place when you try to create a cube: 
+Select the **Clear History** button in the *Commands* window. This makes it easier to see what action takes place when you try to create a cube:
 
 ![spawnprim_tut_png12](images/spawnprim_tutorial12.png)
 
@@ -239,7 +311,13 @@ Click **Create > Mesh > Cube** from the top bar:
 
 ![Create a cube](images/spawnprim_tutorial3.gif)
 
+If the *Create Menu* is not avaliable, go to *Stage Window* and **Right Click > Create > Mesh > Cube**
+
+![](images/step6-1.gif)
+
 In the *Viewport*, you'll see your new cube. In the *Commands Window*, you'll see a new command.
+
+> **Note:** If you cannot see the Cube try adding a light to the stage. **Create > Light > Distant Light**
 
 ### Step 6.2: Copy the Create Mesh Command
 
@@ -249,37 +327,44 @@ Select the new line **CreateMeshPrimWithDefaultXform** in the Command Window, th
 
 ### Step 6.3: Use the Command in Your Extension
 
-Paste the copied command into the bottom of the `extension.py` file. The whole file looks like this:
+Paste the copied command into `on_click()`. The whole file looks like this:
 
 ``` python
 import omni.ext
 import omni.ui as ui
 
+# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+def some_public_function(x: int):
+    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+    return x ** x
+
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
-class MyExtension(omni.ext.IExt):
+class MySpawn_primsExtExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.example.spawn_prims] MyExtension startup")
+        print("[my.spawn_prims.ext] my spawn_prims ext startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
 
                 def on_click():
-                    print("clicked!")
+                    import omni.kit.commands
 
-                ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                    omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
+                        prim_type='Cube',
+                        above_ground=True)
+                    
+
+                with ui.HStack():
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
-        print("[omni.example.spawn_prims] MyExtension shutdown")
+        print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
 
-import omni.kit.commands
-
-omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-    prim_type='Cube')
 ```
 
 You added a new import and a command that creates a cube.
@@ -296,13 +381,13 @@ import omni.kit.commands
 
 ### Step 6.5: Relocate Create Command
 
-Place `omni.kit.commands.execute()` inside the `on_click()` definition.
+Place `omni.kit.commands.execute()` inside the `on_click()` definition and remove `pass`.
 
 ``` python
 def on_click():
     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-        prim_type='Cube')
-    print("clicked!")
+        prim_type='Cube',
+        above_ground=True)
 ```
 
 ### Step 6.6: Review and Save
@@ -314,14 +399,21 @@ import omni.ext
 import omni.ui as ui
 import omni.kit.commands
 
+
+# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
+def some_public_function(x: int):
+    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+    return x ** x
+
+
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
-class MyExtension(omni.ext.IExt):
+class MySpawn_primsExtExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
-        print("[omni.example.spawn_prims] MyExtension startup")
+        print("[my.spawn_prims.ext] my spawn_prims ext startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
         with self._window.frame:
@@ -329,24 +421,25 @@ class MyExtension(omni.ext.IExt):
 
                 def on_click():
                     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-                        prim_type='Cube')
-                    print("clicked!")
+                        prim_type='Cube',
+                        above_ground=True)
 
-                ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
+                with ui.HStack():
+                    ui.Button("Spawn Cube", clicked_fn=on_click)
 
     def on_shutdown(self):
-        print("[omni.example.spawn_prims] MyExtension shutdown")
+        print("[my.spawn_prims.ext] my spawn_prims ext shutdown")
 ```
 
 Save your code, and switch back to Omniverse.
 
-### Step 7: Test Your Work 
+### Step 7: Test Your Work
 
-In Omniverse Code, test your extension by clicking **Spawn Cube**. You should see that a new Cube prim is created with each button press.
- 
+In Omniverse, test your extension by clicking **Spawn Cube**. You should see that a new Cube prim is created with each button press.
+
 ![Spawn Cube](images/spawnprim_tutorial4.gif)
 
-Excellent, you now know how to spawn a cube using a function. What's more, you didn't have to reference anything as Omniverse Code was kind enough to deliver everything you needed.
+Excellent, you now know how to spawn a cube using a function. What's more, you didn't have to reference anything as Omniverse was kind enough to deliver everything you needed.
 
 Continuing on and via same methods, construct a second button that spawns a cone in the same interface.
 
@@ -355,9 +448,9 @@ Continuing on and via same methods, construct a second button that spawns a cone
 In this step, you create a new button that spawns a cone.
 ### Step 8.1: Add a Button
 
-Create a new button below the spawn cube button to spawn a cone: 
+Create a new button below the spawn cube button to spawn a cone:
 
-```python 
+```python
 def on_startup(self, ext_id):
     print("[omni.example.spawn_prims] MyExtension startup")
 
@@ -367,11 +460,11 @@ def on_startup(self, ext_id):
 
             def on_click():
                 omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-                    prim_type='Cube')
-                print("clicked!")
+                    prim_type='Cube',
+                    above_ground=True)
 
-            ui.Button("Spawn Cube", clicked_fn=lambda: on_click())
-            ui.Button("Spawn Cone", clicked_fn=lambda: on_click())
+            ui.Button("Spawn Cube", clicked_fn=on_click)
+            ui.Button("Spawn Cone", clicked_fn=on_click)
 ```
 
 ### Step 8.2: Save and Review
@@ -384,7 +477,7 @@ Notice that both buttons use the same function and, therefore, both spawn a `Cub
 
 ### Step 8.3: Create a Cone from the Menu
 
-Using the same *Create* menu in Omniverse Code, create a Cone (**Create > Mesh > Cone**).
+Using the same *Create* menu in Omniverse, create a Cone (**Create > Mesh > Cone**).
 
 ### Step 8.4: Copy the Commands to your Extension
 
@@ -401,21 +494,21 @@ Paste the command into `extensions.py` like you did before:
 def on_click():
     #Create a Cube
     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-        prim_type='Cube')
+        prim_type='Cube',
+        above_ground=True)
 
     #Create a Cone
     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-        prim_type='Cone')
-
-    print("clicked!")
+        prim_type='Cone',
+        above_ground=True)
 ```
 
 Notice the command is the same, and only the `prim_type` is different:
 
-- To spawn cube you pass `'Cube'`
-- To spawn a cone you pass `'Cone'`
+- To spawn a cube, you pass `'Cube'`
+- To spawn a cone, you pass `'Cone'`
 
-### Step 8.6: Accept a Prim Type in `on_click()` 
+### Step 8.6: Accept a Prim Type in `on_click()`
 
 Add a `prim_type` argument to `on_click()`:
 
@@ -431,7 +524,8 @@ Replace `prim_type='Cube'` with `prim_type=prim_type`:
 
 ``` python
 omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-    prim_type=prim_type)
+    prim_type=prim_type,
+    above_ground=True)
 ```
 
 `on_click()` should now look like this:
@@ -439,18 +533,17 @@ omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
 ``` python
 def on_click(prim_type):
     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
-        prim_type=prim_type)
-
-    print("clicked!")
+        prim_type=prim_type,
+        above_ground=True)
 ```
 
 ### Step 8.8: Pass the Prim Type to `on_click()`
 
-Update the `clicked_fn` for both UI Buttons to pass the `prim_type`: 
+Update the `clicked_fn` for both UI Buttons to pass the `prim_type`:
 
 ``` python
-ui.Button("Spawn Cube", clicked_fn=lambda: on_click("Cube"))
-ui.Button("Spawn Cone", clicked_fn=lambda: on_click("Cone"))
+ui.Button("Spawn Cube", clicked_fn=on_click("Cube"))
+ui.Button("Spawn Cone", clicked_fn=on_click("Cone"))
 ```
 
 ### Step 8.9: Save and Test
@@ -461,22 +554,27 @@ Save the file, and test the updates to your *Spawn Primitives* Extension:
 
 ## Step 9: Conclusion
 
-Great job! You've successfully created a second button that spawns a second mesh, all within the same Extension. This, of course, can be expanded upon.  
+Great job! You've successfully created a second button that spawns a second mesh, all within the same Extension. This, of course, can be expanded upon.
 
-> **Optional Challenge:** Add a button for every mesh type on your own.  
-> 
+> **Optional Challenge:** Add a button for every mesh type on your own.
+>
 > ![All the buttons](images/spawnprim_tutorial15.png)
-> 
+>
 > Below you can find a completed "cheat sheet" if you need help or just want to copy it for your own use.
-> 
-> <details> 
+>
+> <details>
 >     <summary><b>Click to show the final code</b></summary>
-> 
-> ```  
+>
+> ```
 > import omni.ext
 > import omni.ui as ui
 > import omni.kit.commands
-> 
+>
+> # Functions and vars are available to other extension as usual in python: `example.python_ext some_public_function(x)`
+> def some_public_function(x: int):
+>    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
+>    return x ** x
+>
 > # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 > # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 > # on_shutdown() is called.
@@ -485,27 +583,26 @@ Great job! You've successfully created a second button that spawns a second mesh
 >     # this extension is located on filesystem.
 >     def on_startup(self, ext_id):
 >         print("[omni.example.spawn_prims] MyExtension startup")
-> 
+>
 >         self._window = ui.Window("Spawn Primitives", width=300, height=300)
 >         with self._window.frame:
 >             with ui.VStack():
-> 
+>
 >                 def on_click(prim_type):
 >                     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
->                         prim_type=prim_type)
-> 
->                     print("clicked!")
-> 
->                 ui.Button("Spawn Cube", clicked_fn=lambda: on_click("Cube"))
->                 ui.Button("Spawn Cone", clicked_fn=lambda: on_click("Cone"))
->                 ui.Button("Spawn Cylinder", clicked_fn=lambda: on_click("Cylinder"))
->                 ui.Button("Spawn Disk", clicked_fn=lambda: on_click("Disk"))
->                 ui.Button("Spawn Plane", clicked_fn=lambda: on_click("Plane"))
->                 ui.Button("Spawn Sphere", clicked_fn=lambda: on_click("Sphere"))
->                 ui.Button("Spawn Torus", clicked_fn=lambda: on_click("Torus"))
-> 
+>                         prim_type=prim_type,
+>                         above_ground=True)
+>
+>                 ui.Button("Spawn Cube", clicked_fn=on_click("Cube"))
+>                 ui.Button("Spawn Cone", clicked_fn=on_click("Cone"))
+>                 ui.Button("Spawn Cylinder", clicked_fn=on_click("Cylinder"))
+>                 ui.Button("Spawn Disk", clicked_fn=on_click("Disk"))
+>                 ui.Button("Spawn Plane", clicked_fn=on_click("Plane"))
+>                 ui.Button("Spawn Sphere", clicked_fn=on_click("Sphere"))
+>                 ui.Button("Spawn Torus", clicked_fn=on_click("Torus"))
+>
 >     def on_shutdown(self):
 >         print("[omni.example.spawn_prims] MyExtension shutdown")
 > ```
-> 
+>
 > </details>

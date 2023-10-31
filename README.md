@@ -1,26 +1,32 @@
 # Spawn Primitives Extension Sample
 
-## [Spawn Primitivies (omni.example.spawn_prims)](exts/omni.example.spawn_prims)
+## [Spawn Primitives (omni.example.spawn_prims)](exts/omni.example.spawn_prims)
 
 ![previewImage2](exts/omni.example.spawn_prims/tutorial/images/spawnprim_tutorial7.gif)
 
 ### About
-This extension shows how to build an extension in less than 10 minutes. The focus of this sample extension is to show how to create an extension and use omni.kit commands.
+This repo shows how to build an extension in less than 10 minutes. The focus of this sample extension is to show how to create an extension and use omni.kit commands.
 
-[Reference Video](https://www.youtube.com/watch?v=eGxV_PGNpOg) used as a base for this project.
-
-
-### [README](exts/omni.example.spawn_prims/)
+#### [README](exts/omni.example.spawn_prims/)
 See the [README for this extension](exts/omni.example.spawn_prims/) to learn more about it including how to use it.
 
-### [Tutorial](exts/omni.example.spawn_prims/tutorial/tutorial.md)
+#### [Tutorial](exts/omni.example.spawn_prims/tutorial/tutorial.md)
 Follow a [step-by-step tutorial](exts/omni.example.spawn_prims/tutorial/tutorial.md) that walks you through how to use omni.ui.scene to build this extension.
 
 ## Adding This Extension
 
-To add a this extension to your Omniverse app:
-1. Go into: Extension Manager -> Gear Icon -> Extension Search Path
+To add this extension to your Omniverse app:
+1. Go into: `Extension Manager` -> `Hamburger Icon` -> `Settings` -> `Extension Search Path`
 2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawn-prims.git?branch=main&dir=exts`
+
+Alternatively:
+1. Download or Clone the extension, unzip the file if downloaded
+2. Copy the `exts` folder path within the extension folder
+    - i.e. `/home/.../kit-extension-sample-spawn-prims/exts` (Linux) or `C:/.../kit-extension-sample-spawn-prims/ext` (Windows)
+3. Go into: `Extension Manager` -> `Hamburger Icon` -> `Settings` -> `Extension Search Path`
+4. Add the `exts` folder path as a search path
+
+Make sure no filter is enabled and in both cases you should be able to find the new extension in the `Third Party` tab list.
 
 ## Linking with an Omniverse app
 
@@ -29,21 +35,39 @@ For a better developer experience, it is recommended to create a folder link nam
 Run:
 
 ```bash
+# Windows
 > link_app.bat
 ```
 
-There is also an analogous `link_app.sh` for Linux. If successful you should see `app` folder link in the root of this repo.
+```shell
+# Linux
+~$ ./link_app.sh
+```
 
-If multiple Omniverse apps is installed script will select recommended one. Or you can explicitly pass an app:
+If successful you should see `app` folder link in the root of this repo.
+
+If multiple Omniverse apps are installed the script will select the recommended one. Or you can explicitly pass an app:
 
 ```bash
+# Windows
 > link_app.bat --app code
 ```
 
-You can also just pass a path to create link to:
+```shell
+# Linux
+~$ ./link_app.sh --app code
+```
+
+You can also pass a path that leads to the Omniverse package folder to create the link:
 
 ```bash
+# Windows
 > link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2022.1.3"
+```
+
+```shell
+# Linux
+~$ ./link_app.sh --path "home/bob/.local/share/ov/pkg/create-2022.1.3"
 ```
 
 ## Contributing
