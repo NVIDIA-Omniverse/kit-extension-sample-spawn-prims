@@ -10,11 +10,6 @@ import omni.ext
 import omni.ui as ui
 import omni.kit.commands
 
-# Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
-def some_public_function(x: int):
-    print("[my.spawn_prims.ext] some_public_function was called with x: ", x)
-    return x ** x
-
 # Any class derived from `omni.ext.IExt` in top level module (defined in `python.modules` of `extension.toml`) will be
 # instantiated when extension gets enabled and `on_startup(ext_id)` will be called. Later when extension gets disabled
 # on_shutdown() is called.
@@ -22,6 +17,12 @@ class MyExtension(omni.ext.IExt):
     # ext_id is current extension id. It can be used with extension manager to query additional information, like where
     # this extension is located on filesystem.
     def on_startup(self, ext_id):
+        """
+         Called when MyExtension starts. 
+         
+         Args:
+            ext_id : id of the extension that is
+        """
         print("[omni.example.spawn_prims] MyExtension startup")
 
         self._window = ui.Window("Spawn Primitives", width=300, height=300)
@@ -29,6 +30,12 @@ class MyExtension(omni.ext.IExt):
             # VStack which will layout UI elements vertically
             with ui.VStack():
                 def on_click(prim_type):
+                    """
+                     Creates a mesh primitive of the given type. 
+                     
+                     Args:
+                       prim_type : The type of primitive to
+                    """
                     # omni.kit.commands.execute will execute the given command that is passed followed by the commands arguments
                     omni.kit.commands.execute('CreateMeshPrimWithDefaultXform',
                         prim_type=prim_type,
@@ -44,4 +51,7 @@ class MyExtension(omni.ext.IExt):
                 ui.Button("Spawn Torus", clicked_fn=lambda: on_click("Torus"))
 
     def on_shutdown(self):
+        """
+         Called when the extension is shutting down. 
+        """
         print("[omni.example.spawn_prims] MyExtension shutdown")
