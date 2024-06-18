@@ -15,59 +15,53 @@ Follow a [step-by-step tutorial](exts/omni.example.spawn_prims/tutorial/tutorial
 
 ## Adding This Extension
 
-To add this extension to your Omniverse app:
-1. Go into: `Extension Manager` -> `Hamburger Icon` -> `Settings` -> `Extension Search Path`
-2. Add this as a search path: `git://github.com/NVIDIA-Omniverse/kit-extension-sample-spawn-prims.git?branch=main&dir=exts`
+To add this extension to your app:
 
-Alternatively:
 1. Download or Clone the extension, unzip the file if downloaded
-2. Copy the `exts` folder path within the extension folder
-    - i.e. `/home/.../kit-extension-sample-spawn-prims/exts` (Linux) or `C:/.../kit-extension-sample-spawn-prims/ext` (Windows)
-3. Go into: `Extension Manager` -> `Hamburger Icon` -> `Settings` -> `Extension Search Path`
-4. Add the `exts` folder path as a search path
 
-Make sure no filter is enabled and in both cases you should be able to find the new extension in the `Third Party` tab list.
+2. Create a New Extension
 
-## Linking with an Omniverse app
-
-For a better developer experience, it is recommended to create a folder link named `app` to the *Omniverse Kit* app installed from *Omniverse Launcher*. A convenience script to use is included.
-
-Run:
-
+**Linux:**
 ```bash
-# Windows
-> link_app.bat
+./repo.sh template new
 ```
 
-```shell
-# Linux
-~$ ./link_app.sh
+**Windows:**
+```powershell
+.\repo.bat template new
 ```
 
-If successful you should see `app` folder link in the root of this repo.
+3. Follow the prompt instructions:
+- **? Select with arrow keys what you want to create:** Extension
+- **? Select with arrow keys your desired template:**: Python UI Extension
+- **? Enter name of extension [name-spaced, lowercase, alphanumeric]:**: omni.example.spawn_prims
+- **? Enter extension_display_name:**: Spawn Primitives
+- **? Enter version:**: 0.1.0
 
-If multiple Omniverse apps are installed the script will select the recommended one. Or you can explicitly pass an app:
+4. Add the Extension to an Application
 
+In the newly created extension, **copy and paste** the `omni.example.spawn_prims` folder that was cloned into `kit-app-template/sources/extensions/omni.example.spawn_prims`.
+
+You will be prompted if you want to replace files, **select** `Replace All`.
+
+To add your extension to an application, declare it in the dependencies section of the application's `.kit` file:
+
+```toml
+[dependencies]
+"omni.example.spawn_prims" = {}
+```
+
+5. Build with New Extensions
+After a new extension has been added to the `.kit` file, the application should be rebuilt to ensure extensions are populated to the build directory.
+
+**Linux:**
 ```bash
-# Windows
-> link_app.bat --app code
+./repo.sh build
 ```
 
-```shell
-# Linux
-~$ ./link_app.sh --app code
-```
-
-You can also pass a path that leads to the Omniverse package folder to create the link:
-
-```bash
-# Windows
-> link_app.bat --path "C:/Users/bob/AppData/Local/ov/pkg/create-2022.1.3"
-```
-
-```shell
-# Linux
-~$ ./link_app.sh --path "home/bob/.local/share/ov/pkg/create-2022.1.3"
+**Windows:**
+```powershell
+.\repo.bat build
 ```
 
 ## Contributing
