@@ -57,7 +57,7 @@ In VSCode, **go to** `source > apps > [YOUR KIT BASE EDITOR APP].kit`, **scroll*
 At the bottom of the `[dependencies]` section, add the following line:
 
 ``` json
-"my.spawn_prims.ext" = {} # Spawn Primitives
+"my.spawn_prims.ext" = {} 
 ```
 
 **Save** the `.kit` file.
