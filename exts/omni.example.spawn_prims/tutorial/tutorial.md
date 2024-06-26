@@ -100,7 +100,7 @@ Upon launching your Application, a new window appears in your Application, calle
 
 ![My window](images/spawnprim_tutorial8.png)
 
-If you click **Add** in *My Window*, the `empty` text changes to `count: 1`, indicating that the button was clicked. Pressing **Add** again increases the number for count. Pressing **Reset** will reset it back to `empty`:
+If you click **Add** in *Spawn Primitives*, the `empty` text changes to `count: 1`, indicating that the button was clicked. Pressing **Add** again increases the number for count. Pressing **Reset** will reset it back to `empty`:
 
 ![Console log](images/spawnprim_tutorial1.gif)
 
